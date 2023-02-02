@@ -21,4 +21,17 @@ public class UserBO {
 	public int addUser(String name, String yyyymmdd, String email) {
 		return userDAO.insertUser(name, yyyymmdd, email);
 	}
+	
+	// 이메일 중복 여부를 알려주는 기능
+	public boolean isDulicateEmail(String email) {
+		int count = userDAO.selectCountEmail(email);
+
+		if(count == 0) {
+			// count 가 0이면 중복 아님
+			return false;
+		} else {
+			// count 가 0이 아니면 중복
+			return true;
+		}
+	}
 }
